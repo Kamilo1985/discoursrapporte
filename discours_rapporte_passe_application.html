@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le discours rapporté au passé · Atelier interactif B1</title>
+<style>
+:root{--dark:#18364c;--teal:#087574;--line:#dbe5e8;--muted:#536b7c;--bg:#f2f6f8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--dark);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #91ced2;outline-offset:3px}
+.wrap{max-width:1150px;padding:22px;margin:auto}.hero{background:linear-gradient(120deg,#142f48 10%,#164f66 65%,#0c7777);color:white;border-radius:20px;padding:38px 40px}
+.hero .top{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a8e7e0;font-weight:800}
+h1{font-size:clamp(29px,4vw,44px);line-height:1.13;margin:13px 0} .hero p{max-width:660px;color:#e7f4f4;margin:0}
+.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:21px}.tags span{border:1px solid #ffffff66;border-radius:20px;padding:5px 13px;font-size:12px}
+.grid{display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
+nav{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;position:sticky;top:15px}
+.navtitle{color:#64798a;letter-spacing:1.2px;text-transform:uppercase;font-size:11px;font-weight:800;margin:5px 8px 13px}
+.navbtn{display:flex;align-items:center;gap:11px;width:100%;border:0;text-align:left;padding:11px 9px;background:transparent;color:#405a6c;border-radius:9px;font-weight:700;font-size:13px}
+.navbtn:hover{background:#f0f6f7}.navbtn[aria-current="step"]{background:#e2f2f0;color:#00676a}
+.num{display:grid;place-items:center;border-radius:50%;background:#ebf1f4;width:25px;height:25px;flex:none}.navbtn[aria-current="step"] .num{background:#087574;color:white}
+.track{height:7px;background:#e3ebef;border-radius:12px;overflow:hidden;margin:12px 7px 2px}.track div{background:#087574;height:100%;width:20%;transition:width .2s}
+#prog{font-size:12px;color:#657b89;padding:14px 8px 0;border-top:1px solid var(--line);margin-top:14px}
+.panel{display:none;background:white;border:1px solid var(--line);border-radius:16px;padding:30px 33px;box-shadow:0 8px 24px #152f4507}
+.panel.active{display:block}.eyebrow{color:#087574;text-transform:uppercase;letter-spacing:1.3px;font-weight:800;font-size:12px}
+h2{font-size:clamp(25px,3vw,32px);line-height:1.23;margin:7px 0 12px}h3{font-size:19px;margin:24px 0 10px}
+.lead{font-size:16px;color:var(--muted);line-height:1.75}.ex{padding:17px 19px;border-radius:12px;border:1px solid var(--line);margin:14px 0}
+.ex .type{color:#0b7474;font-size:12px;font-weight:800;text-transform:uppercase;margin-bottom:7px}
+.ex .direct{margin-bottom:9px}.reported{padding:10px 12px;border-radius:8px;background:#eaf5f3}
+.note{margin:21px 0;padding:14px 17px;border-left:4px solid #117e89;border-radius:0 8px 8px 0;background:#ecf6f7}
+.note.warn{background:#fff8e8;border-left-color:#e6aa41}.quotegrid{display:grid;grid-template-columns:1fr 34px 1fr;gap:9px;align-items:center;margin:22px 0}
+.quote{background:#f5f8fa;border:1px solid var(--line);border-radius:12px;padding:18px}.quote.indirect{background:#e9f6f3}
+.quote small{display:block;font-size:11px;color:#617588;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:7px}
+.arrow{color:#087574;text-align:center;font-size:28px}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:23px 0}
+.tile{border:1px solid var(--line);padding:14px;border-radius:12px;font-size:13px;background:#fafcfc}
+.tile b{display:block;color:#087574;font-size:14px;margin-bottom:4px}
+.scroll{border:1px solid var(--line);border-radius:12px;overflow:auto;margin:19px 0}
+table{border-collapse:collapse;width:100%;min-width:475px}th{background:#1a4058;color:white;text-align:left;font-size:13px;padding:12px 15px}
+td{padding:10px 15px;border-bottom:1px solid var(--line);font-size:14px}tr:nth-child(even) td{background:#f5f9fa}tr:last-child td{border-bottom:0}td:last-child{color:#076b6e;font-weight:700}
+.footnav{display:flex;justify-content:space-between;align-items:center;gap:9px;border-top:1px solid var(--line);margin-top:27px;padding-top:19px}
+.btn{border:0;border-radius:9px;background:#0b7275;color:white;font-size:14px;font-weight:800;padding:11px 17px}
+.btn:hover{background:#085f62}.btn.alt{background:#eaf1f4;color:#2b4e63}.btn.alt:hover{background:#d7e8ed}
+.btn.line{border:1px solid #a7cad0;color:#0b6e72;background:white}.btn.small{font-size:12px;padding:7px 11px}
+.question{border:1px solid var(--line);padding:17px 18px;margin:13px 0;border-radius:12px}
+.question h4{margin:0 0 4px;font-size:15px}.question .stem{font-size:13px;color:var(--muted);margin-bottom:10px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border:1px solid #e1e8ed;border-radius:8px;background:#fbfcfd;margin:7px 0;cursor:pointer;font-size:14px}
+.option input{margin-top:5px;accent-color:#087574}.option.correct{background:#eaf7ef;border-color:#81c99c}.option.wrong{background:#fff0f0;border-color:#e2aaaa}
+.feedback{margin-top:9px;border-radius:7px;padding:9px 11px;font-size:13px;background:#edf5f8}.feedback.ok{background:#e8f6ed;color:#135e3c}.feedback.no{background:#fff0f0;color:#96353a}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:19px}.score{display:none;background:#e8f6ed;border:1px solid #bedfcb;border-radius:10px;padding:15px 18px;margin-top:15px}
+.score strong{font-size:23px;color:#10643f}.score p{margin:5px 0 0;font-size:13px}
+.writing{background:#f9fbfc;border:1px solid var(--line);border-radius:11px;margin:13px 0;padding:16px 17px}
+.writing h4{margin:0 0 10px}.writing label{font-size:13px;color:#546d7c;font-weight:700;display:block;margin-bottom:6px}
+textarea{width:100%;min-height:72px;padding:10px;border:1px solid #c5d6dd;border-radius:8px;resize:vertical;background:white}
+.sample{display:none;margin-top:10px;border-left:3px solid #0b7774;background:#e8f5f2;padding:10px;font-size:13px}
+.smallnote{font-size:12px;color:#62778a}.bottom{text-align:center;color:#768a99;font-size:12px;margin:18px}
+@media(max-width:800px){.grid{display:block}nav{position:static;margin-bottom:18px}.navitems{display:flex;overflow-x:auto;gap:3px}.navbtn{white-space:nowrap;width:auto}#prog,.track,.navtitle{display:none}}
+@media(max-width:550px){.wrap{padding:11px}.hero{padding:25px 21px}.panel{padding:22px 17px}.quotegrid{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.tiles{grid-template-columns:1fr}}
+@media print{nav,.footnav,.controls{display:none}.grid{display:block}.panel{display:block!important;break-after:page}.hero{background:white;color:black;border:1px solid #aaa}.hero p{color:black}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero"><div class="top">Atelier de grammaire · B1</div><h1>Le discours rapporté<br>au passé</h1><p>Une leçon complète avec des exemples professionnels, des règles simples et des exercices à corriger directement.</p><div class="tags"><span>5 modules</span><span>12 QCM autocorrectifs</span><span>5 productions écrites</span></div></header>
+<div class="grid">
+<nav aria-label="Modules"><div class="navtitle">Parcours de formation</div><div class="navitems">
+<button class="navbtn" data-page="0" aria-current="step"><span class="num">1</span>Comprendre</button>
+<button class="navbtn" data-page="1"><span class="num">2</span>Concordance des temps</button>
+<button class="navbtn" data-page="2"><span class="num">3</span>Temps et lieu</button>
+<button class="navbtn" data-page="3"><span class="num">4</span>Questions et ordres</button>
+<button class="navbtn" data-page="4"><span class="num">5</span>Exercices</button>
+</div><div id="prog">Modules consultés : 1 / 5</div><div class="track"><div id="bar"></div></div></nav>
+<main id="main">
+<section class="panel active" id="page0"><div class="eyebrow">Module 01 · Découvrir</div><h2>Qu'est-ce que le discours rapporté ?</h2><p class="lead">Le discours rapporté permet de transmettre les paroles d'une personne avec ses propres mots. Si le verbe introducteur est au passé (<em>il a dit, elle a expliqué, ils ont demandé</em>), on modifie généralement les temps verbaux, les pronoms et certaines expressions de temps ou de lieu.</p>
+<div class="quotegrid"><div class="quote"><small>Discours direct</small>Marie : « Je <b>travaille</b> à distance. »</div><div class="arrow">→</div><div class="quote indirect"><small>Discours rapporté</small>Marie a dit qu'elle <b>travaillait</b> à distance.</div></div>
+<h3>Trois éléments à adapter</h3><div class="tiles"><div class="tile"><b>Les temps</b>« travaille » → « travaillait »</div><div class="tile"><b>Les pronoms</b>« je » → « elle » selon la personne</div><div class="tile"><b>Les repères</b>« demain » → « le lendemain » si nécessaire</div></div>
+<div class="note"><strong>Important :</strong> ces transformations dépendent du contexte. Une vérité toujours valable peut rester au présent : <em>Il a dit que la Terre tourne autour du Soleil.</em></div>
+<div class="footnav"><span class="smallnote">Étape 1 / 5</span><button class="btn" data-page="1">Continuer →</button></div></section>
+
+<section class="panel" id="page1"><div class="eyebrow">Module 02 · Règles</div><h2>La concordance des temps</h2><p class="lead">Quand le verbe introducteur est au passé, les temps du discours direct se transforment généralement ainsi :</p>
+<div class="scroll"><table><thead><tr><th>Discours direct</th><th>Discours rapporté au passé</th></tr></thead><tbody>
+<tr><td>Présent</td><td>Imparfait</td></tr>
+<tr><td>Passé composé</td><td>Plus-que-parfait</td></tr>
+<tr><td>Imparfait</td><td>Imparfait</td></tr>
+<tr><td>Plus-que-parfait</td><td>Plus-que-parfait</td></tr>
+<tr><td>Futur simple</td><td>Conditionnel présent</td></tr>
+<tr><td>Futur antérieur</td><td>Conditionnel passé</td></tr>
+<tr><td>Conditionnel présent</td><td>Conditionnel présent</td></tr>
+</tbody></table></div>
+<h3>Exemples</h3>
+<div class="ex"><div class="type">Présent → Imparfait</div><div class="direct">« Je <b>travaille</b> à distance. »</div><div class="reported">Il a dit qu'il <b>travaillait</b> à distance.</div></div>
+<div class="ex"><div class="type">Passé composé → Plus-que-parfait</div><div class="direct">« J'<b>ai terminé</b> mon rapport. »</div><div class="reported">Elle a expliqué qu'elle <b>avait terminé</b> son rapport.</div></div>
+<div class="ex"><div class="type">Futur simple → Conditionnel présent</div><div class="direct">« Nous <b>participerons</b> à la réunion. »</div><div class="reported">Ils ont annoncé qu'ils <b>participeraient</b> à la réunion.</div></div>
+<div class="note warn">Le <b>conditionnel présent</b> peut exprimer un futur vu depuis le passé : « Je viendrai » → Il a dit qu'il <b>viendrait</b>.</div>
+<div class="footnav"><button class="btn alt" data-page="0">← Précédent</button><button class="btn" data-page="2">Continuer →</button></div></section>
+
+<section class="panel" id="page2"><div class="eyebrow">Module 03 · Repères</div><h2>Les expressions de temps et de lieu</h2><p class="lead">Lorsqu'on rapporte les paroles plus tard ou depuis un autre endroit, on adapte les repères.</p>
+<div class="scroll"><table><thead><tr><th>Discours direct</th><th>Discours rapporté</th></tr></thead><tbody>
+<tr><td>Aujourd'hui</td><td>Ce jour-là</td></tr>
+<tr><td>Hier</td><td>La veille</td></tr>
+<tr><td>Demain</td><td>Le lendemain</td></tr>
+<tr><td>Avant-hier</td><td>L'avant-veille</td></tr>
+<tr><td>Après-demain</td><td>Le surlendemain</td></tr>
+<tr><td>La semaine prochaine</td><td>La semaine suivante</td></tr>
+<tr><td>La semaine dernière</td><td>La semaine précédente</td></tr>
+<tr><td>Maintenant</td><td>À ce moment-là</td></tr>
+<tr><td>Ici</td><td>Là</td></tr>
+</tbody></table></div>
+<div class="ex"><div class="type">Exemple</div><div class="direct">« J'ai commencé <b>hier</b>. »</div><div class="reported">Elle a dit qu'elle avait commencé <b>la veille</b>.</div></div>
+<div class="note warn"><b>Attention :</b> ces changements ne sont pas automatiques. Si on rapporte les paroles le même jour, <i>aujourd'hui</i> peut rester <i>aujourd'hui</i>.</div>
+<div class="footnav"><button class="btn alt" data-page="1">← Précédent</button><button class="btn" data-page="3">Continuer →</button></div></section>
+
+<section class="panel" id="page3"><div class="eyebrow">Module 04 · Structures</div><h2>Rapporter une question ou un ordre</h2>
+<h3>1. Une question fermée : « si »</h3><p>Une question qui appelle une réponse par oui ou non se rapporte avec <strong>si</strong>.</p>
+<div class="ex"><div class="direct">« Est-ce que tu as terminé le dossier ? »</div><div class="reported">Il m'a demandé <b>si j'avais terminé</b> le dossier.</div></div>
+<h3>2. Une question ouverte : conserver le mot interrogatif</h3>
+<div class="ex"><div class="direct">« Pourquoi êtes-vous absent ? »</div><div class="reported">Elle lui a demandé <b>pourquoi il était absent</b>.</div></div>
+<h3>3. « Qu'est-ce que » → « ce que »</h3>
+<div class="ex"><div class="direct">« Qu'est-ce que vous faites ? »</div><div class="reported">Il a demandé <b>ce que nous faisions</b>.</div></div>
+<h3>4. Un ordre : « de + infinitif »</h3>
+<div class="ex"><div class="direct">« Envoyez le document avant vendredi. »</div><div class="reported">La directrice nous a demandé <b>d'envoyer</b> le document avant vendredi.</div></div>
+<h3>5. Un ordre négatif : « de ne pas + infinitif »</h3>
+<div class="ex"><div class="direct">« Ne partagez pas ce fichier. »</div><div class="reported">Elle nous a demandé <b>de ne pas partager</b> ce fichier.</div></div>
+<div class="note">Au discours indirect, on n'utilise plus « est-ce que » ni l'inversion sujet-verbe d'une question directe.</div>
+<div class="footnav"><button class="btn alt" data-page="2">← Précédent</button><button class="btn" data-page="4">Faire les exercices →</button></div></section>
+
+<section class="panel" id="page4"><div class="eyebrow">Module 05 · S'entraîner</div><h2>Exercices et corrigés</h2>
+<p class="lead">Choisissez la bonne transformation. Les cinq premières questions reprennent l'exercice de la leçon ; les suivantes approfondissent les règles.</p>
+<h3>Partie A · 12 questions à choix multiples</h3><div id="quiz"></div>
+<div class="controls"><button class="btn" id="grade">Corriger mes réponses</button><button class="btn alt" id="resetQuiz">Recommencer</button></div>
+<div class="score" id="score" role="status" aria-live="polite"><strong id="scoreN"></strong><p id="scoreText"></p></div>
+<h3>Partie B · 5 transformations écrites</h3><p class="lead">Rédigez la phrase indirecte, puis révélez une proposition de réponse pour vous autocorriger. D'autres formulations peuvent être correctes selon le contexte.</p>
+<div id="written"></div><div class="controls"><button class="btn line" id="revealAll">Afficher tous les corrigés</button><button class="btn alt" id="resetWritten">Effacer les réponses</button></div>
+<div class="note"><b>Bilan :</b> vérifiez les temps, les pronoms, les repères temporels et la structure des questions ou des ordres.</div>
+<div class="footnav"><button class="btn alt" data-page="3">← Revoir les règles</button><button class="btn line" id="courseReset">Recommencer le parcours</button></div></section>
+</main></div><footer class="bottom">Ressource pédagogique autonome · Fonctionne sans connexion Internet</footer></div>
+<script>
+(function(){
+"use strict";
+const questions=[
+["« Je suis en réunion. »","Il a expliqué qu'il…",["est en réunion.","était en réunion.","avait été en réunion."],1,"Présent → imparfait."],
+["« Nous avons reçu les documents. »","Ils ont confirmé qu'ils…",["recevaient les documents.","ont reçu les documents.","avaient reçu les documents."],2,"Passé composé → plus-que-parfait."],
+["« Je vous répondrai demain. »","Elle a annoncé qu'elle…",["nous répondrait le lendemain.","nous répondra demain.","nous avait répondu la veille."],0,"Futur simple → conditionnel présent ; demain → le lendemain."],
+["« Est-ce que vous comprenez la procédure ? »","Le responsable nous a demandé…",["que nous comprenions la procédure.","si nous comprenions la procédure.","si nous avons compris la procédure."],1,"Une question fermée se rapporte avec « si » ; présent → imparfait."],
+["« Ne quittez pas la salle ! »","La responsable nous a demandé…",["que nous ne quittions pas la salle.","de ne pas quitter la salle.","de ne quittions pas la salle."],1,"Un ordre négatif se rapporte avec « de ne pas + infinitif »."],
+["« Je préparais la présentation. »","Elle a dit qu'elle…",["préparait la présentation.","avait préparé la présentation.","préparerait la présentation."],0,"L'imparfait reste à l'imparfait."],
+["« J'aurai terminé avant midi. »","Elle a assuré qu'elle…",["aurait terminé avant midi.","avait terminé avant midi.","terminerait avant midi."],0,"Futur antérieur → conditionnel passé."],
+["« J'ai commencé hier. »","Elle a dit qu'elle…",["commençait hier.","avait commencé la veille.","a commencé le lendemain."],1,"Passé composé → plus-que-parfait ; hier → la veille."],
+["« Où travaillez-vous ? »","Il nous a demandé…",["où travaillions-nous.","où nous travaillerons.","où nous travaillions."],2,"On conserve « où » sans inversion ; présent → imparfait."],
+["« Qu'est-ce que vous recherchez ? »","Elle nous a demandé…",["ce que nous recherchions.","qu'est-ce que nous recherchions.","ce que recherchions-nous."],0,"« Qu'est-ce que » devient « ce que » ; plus d'inversion."],
+["« J'avais déjà appelé le client. »","Il a dit qu'il…",["appellerait déjà le client.","avait déjà appelé le client.","a déjà appelé le client."],1,"Le plus-que-parfait reste au plus-que-parfait."],
+["« Nous reviendrons la semaine prochaine. »","Ils ont annoncé qu'ils…",["étaient revenus la semaine précédente.","reviendront la semaine prochaine.","reviendraient la semaine suivante."],2,"Futur → conditionnel ; la semaine prochaine → la semaine suivante."]
+];
+const free=[
+["« Je travaille aujourd'hui. »","Il a dit…","Il a dit qu'il travaillait ce jour-là.","Présent → imparfait ; aujourd'hui → ce jour-là."],
+["« Pourquoi avez-vous changé d'avis ? »","Elle nous a demandé…","Elle nous a demandé pourquoi nous avions changé d'avis.","Passé composé → plus-que-parfait ; on conserve « pourquoi »."],
+["« N'ouvrez pas ce dossier ! »","Le directeur nous a demandé…","Le directeur nous a demandé de ne pas ouvrir ce dossier.","Un ordre négatif utilise « de ne pas + infinitif »."],
+["« Nous partirons demain. »","Ils ont annoncé…","Ils ont annoncé qu'ils partiraient le lendemain.","Futur simple → conditionnel présent ; demain → le lendemain."],
+["« J'avais déjà fini. »","Elle a expliqué…","Elle a expliqué qu'elle avait déjà fini.","Le plus-que-parfait reste inchangé."]
+];
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const visited=new Set([0]);
+function page(i){i=Number(i);if(i<0||i>4)return;
+ document.querySelectorAll('.panel').forEach((e,j)=>e.classList.toggle('active',i===j));
+ document.querySelectorAll('nav .navbtn').forEach((e,j)=>i===j?e.setAttribute('aria-current','step'):e.removeAttribute('aria-current'));
+ visited.add(i);document.getElementById('prog').textContent='Modules consultés : '+visited.size+' / 5';
+ document.getElementById('bar').style.width=(20*visited.size)+'%';
+ window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>page(b.dataset.page)));
+const quiz=document.getElementById('quiz');
+questions.forEach((q,i)=>{
+ const el=document.createElement('div');el.className='question';
+ el.innerHTML='<h4>'+(i+1)+'. '+safe(q[0])+'</h4><div class="stem">'+safe(q[1])+'</div><fieldset style="border:0;padding:0;margin:0" aria-label="Question '+(i+1)+'">'+q[2].map((o,j)=>'<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"><span>'+safe(o)+'</span></label>').join('')+'</fieldset><div class="feedback" id="feed'+i+'" hidden></div>';
+ quiz.appendChild(el);
+});
+document.getElementById('grade').addEventListener('click',()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const select=quiz.querySelector('input[name="q'+i+'"]:checked'), f=document.getElementById('feed'+i);
+  quiz.querySelectorAll('input[name="q'+i+'"]').forEach(x=>x.closest('label').classList.remove('correct','wrong'));
+  f.hidden=false;
+  if(!select){f.className='feedback';f.textContent='À compléter : choisissez une réponse.';return;}
+  answered++;const ok=+select.value===q[3];if(ok)score++;
+  select.closest('label').classList.add(ok?'correct':'wrong');f.className='feedback '+(ok?'ok':'no');
+  f.textContent=(ok?'Bonne réponse. ':'Réponse correcte : '+q[2][q[3]]+' ')+q[4];
+ });
+ const result=document.getElementById('score');result.style.display='block';
+ document.getElementById('scoreN').textContent=score+' / '+questions.length+' bonnes réponses';
+ document.getElementById('scoreText').textContent=answered<questions.length?'Vous avez répondu à '+answered+' question(s). Complétez les autres, puis corrigez de nouveau.':score===12?'Excellent : tout est correct !':score>=9?'Très bien ! Relisez les explications des réponses manquées.':'Vous pouvez revoir les règles puis réessayer.';
+});
+document.getElementById('resetQuiz').addEventListener('click',()=>{
+ quiz.querySelectorAll('input').forEach(e=>e.checked=false);
+ quiz.querySelectorAll('.option').forEach(e=>e.classList.remove('correct','wrong'));
+ quiz.querySelectorAll('.feedback').forEach(e=>e.hidden=true);
+ document.getElementById('score').style.display='none';
+});
+const wa=document.getElementById('written');
+free.forEach((q,i)=>{
+ const e=document.createElement('div');e.className='writing';
+ e.innerHTML='<h4>'+(i+1)+'. '+safe(q[0])+'</h4><label for="free'+i+'">'+safe(q[1])+'</label><textarea id="free'+i+'" placeholder="Votre transformation…"></textarea><button class="btn small line" data-reveal="'+i+'" type="button" aria-expanded="false">Voir une proposition de corrigé</button><div class="sample" id="sample'+i+'"><b>Proposition :</b> '+safe(q[2])+'<br><b>Pourquoi ?</b> '+safe(q[3])+'</div>';
+ wa.appendChild(e);
+});
+function toggle(i,show){const e=document.getElementById('sample'+i),b=wa.querySelector('[data-reveal="'+i+'"]');
+ e.style.display=show?'block':'none';b.textContent=show?'Masquer le corrigé':'Voir une proposition de corrigé';b.setAttribute('aria-expanded',String(show));}
+wa.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.reveal;toggle(i,document.getElementById('sample'+i).style.display!=='block')}));
+document.getElementById('revealAll').addEventListener('click',()=>free.forEach((_,i)=>toggle(i,true)));
+document.getElementById('resetWritten').addEventListener('click',()=>{wa.querySelectorAll('textarea').forEach(e=>e.value='');free.forEach((_,i)=>toggle(i,false));});
+document.getElementById('courseReset').addEventListener('click',()=>{document.getElementById('resetQuiz').click();document.getElementById('resetWritten').click();visited.clear();page(0);});
+})();
+</script></body></html>
